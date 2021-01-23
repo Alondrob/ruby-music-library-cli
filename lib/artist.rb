@@ -1,13 +1,14 @@
 require 'pry'
 
 class Artist
-
-    attr_accessor :name
+    extend Concerns::Findable
+    attr_accessor :name, :songs, :genres
 
         @@all = []
 
     def initialize(name)
         @name = name
+        @songs = []
         save
     end
 
@@ -29,16 +30,26 @@ class Artist
         new_song
     end
 
+    def add_song(song) # this code Andy
+        if @songs.include?(song)
+            nil
+        else
+            @songs << song 
+        end
 
+        if song.artist == nil
+            song.artist = self
+        else
+            nil
+        end
+    end
 
+    def genres
 
+     arr = @songs.map {|song| song.genre}
+     arr.uniq
 
-
-
-
-
-
-
+    end
 
 
 
