@@ -56,15 +56,22 @@ class Song
       def self.find_or_create_by_name(name)
              self.find_by_name(name) || self.create(name)              
       end
+            # binding.pry
 
 
+      def self.new_from_filename(file_name)
+            # binding.pry
+             new_file = file_name.chomp('.mp3')
+             artist, song, genre = new_file.split(" - ")
+             artist = Artist.find_or_create_by_name(artist) #artist is extendable from the concerns module file 
+             genre = Genre.find_or_create_by_name(genre)
+             song = Song.new(song, artist, genre)
+      end
 
-
-
-
-
-
-
+      def self.create_from_filename(file_name)
+            # binding.pry
+             song = self.new_from_filename(file_name).save
+      end
 
 
     end
@@ -72,5 +79,5 @@ class Song
 
 
 
-
+ 
 
