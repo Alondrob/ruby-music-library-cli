@@ -12,7 +12,7 @@ class Song
         self.artist=(artist) if artist != nil #"invokes #artist= instead of simply assigning to an @artist instance variable to ensure that associations are created upon initialization" do
         # @genre = genre
         self.genre=(genre) if  genre != nil
-        save
+        # save
     end
 
     def save
@@ -29,6 +29,7 @@ class Song
 
     def self.create(name)
         new_song = self.new(name)
+        new_song.save
         new_song
 
     end
